@@ -6,7 +6,7 @@ CREATE TABLE customer (
 	customer_id	integer primary key,
 	first_name	varchar(20) not null,
 	last_name	varchar(20) not null,
-	address		varchar(20),
+	address		varchar(40),
 	city		varchar(20),
 	zipcode		varchar(20)
 );
@@ -150,4 +150,5 @@ INSERT INTO sale (
 	start_date, end_date, discount, game_id)
 	VALUES ('2020-02-26', '2020-02-26', 20.20, 3333);
 
-
+/*Copy over data */
+\copy customer FROM './data/names_out.tsv' WITH NULL AS '-'
