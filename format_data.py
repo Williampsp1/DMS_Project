@@ -97,3 +97,24 @@ for line in e_names:
     counter +=1
 
 e_out.close()
+
+# manager ------
+spec = ['retro games', 'fighting games', 'used games', 'new games', 'PC games', \
+        'console games', 'horror games', 'hand-held consoles']
+man_out = open('./data/manager_out.tsv', 'w')
+e_id = 6000
+for i in range(0,50):
+    ran = random.randint(0,7)
+    man_out.write(spec[ran] + '\t' + str(e_id) + '\n')
+    e_id += 1
+print(e_id)
+
+# cashier -------
+register_id = 8888
+cash_out = open('./data/cashier_out.tsv', 'w')
+for i in range(50,100):
+    cash_out.write(str(register_id) + '\t' + str(e_id) + '\n')
+    e_id +=1
+cash_out.close()
+
+

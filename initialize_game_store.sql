@@ -56,7 +56,8 @@ CREATE TABLE places (
 	order_id	integer primary key,	-- Primary Key
 	customer_id	integer,		-- Foreign Key
 	order_date	date,
-	foreign key(customer_id) references customer
+	foreign key(customer_id) references customer,
+	foreign key(order_id) references online_order
 );
 
 CREATE TABLE purchases (
@@ -65,13 +66,17 @@ CREATE TABLE purchases (
 	purchase_date	date,
 	locale_id	integer,
 	primary key (customer_id, game_id),
-	foreign key(locale_id) references locale
+	foreign key(locale_id) references locale,
+	foreign key(customer_id) references customer,
+	foreign key(game_id) references game
 );
 
 CREATE TABLE has_items (
 	order_id	integer, -- Primary Key
 	game_id		integer,  -- Primary Key
-	primary key(order_id, game_id)
+	primary key(order_id, game_id),
+	foreign key(order_id) references online_order,
+	foreign key(game_id) references game
 );
 
 CREATE TABLE holds_items (
@@ -79,12 +84,15 @@ CREATE TABLE holds_items (
 	game_id		integer,	-- Primary Key
 	quantity	integer,
 	primary key(locale_id, game_id)
+	foreign key(locale_id) references locale,
+	foreign key(game_id) references game
 );
 
 CREATE TABLE works_at (
 	employee_id	integer primary key,	-- Primary Key
 	locale_id	integer,
-	foreign key(locale_id) references locale
+	foreign key(locale_id) references locale,
+	foreign key(employee_id) references employee
 );
 
 CREATE TABLE sale (
