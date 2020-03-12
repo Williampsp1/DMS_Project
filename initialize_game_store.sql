@@ -18,7 +18,7 @@ CREATE TABLE online_order (
 
 CREATE TABLE game (
 	game_id		integer primary key,
-	game_title	varchar(30) not null,
+	game_title	varchar(100) not null,
 	price		float(4) not null,
 	game_genre	varchar(20)
 );
@@ -26,13 +26,13 @@ CREATE TABLE game (
 CREATE TABLE locale (
 	locale_id	integer primary key,
 	city		varchar(20) not null,
-	address		varchar(20),
+	address		varchar(40),
 	zipcode		integer
 );
 
 CREATE TABLE employee (
 	employee_id	integer primary key,
-	salary		float(4),
+	salary		float(10),
 	first_name	varchar(20) not null,
 	last_name	varchar(20) not null
 );
@@ -83,7 +83,7 @@ CREATE TABLE holds_items (
 	locale_id	integer,	-- Primary Key
 	game_id		integer,	-- Primary Key
 	quantity	integer,
-	primary key(locale_id, game_id)
+	primary key(locale_id, game_id),
 	foreign key(locale_id) references locale,
 	foreign key(game_id) references game
 );
@@ -98,7 +98,7 @@ CREATE TABLE works_at (
 CREATE TABLE sale (
         start_date      date,		-- Primary Key
         end_date        date,		-- Primary Key
-        discount        float(4),		-- Discount in dollars
+        discount        float(8),		-- Discount in dollars
         game_id         integer,		-- Primary Key
 	primary key(start_date, end_date, discount, game_id),
 	foreign key(game_id) references game
@@ -154,11 +154,23 @@ INSERT INTO works_at (
 	employee_id, locale_id)
 	VALUES (3331, 2322);
 
-INSERT INTO sale (
-	start_date, end_date, discount, game_id)
-	VALUES ('2020-02-26', '2020-02-26', 20.20, 3333),
-	('2020-03-06', '2020-03-07', 10.50, 3590),
-	('2020-01-06', '2020-01-07', 5.00, 3595),
-	('2020-01-25', '2020-01-18', 10.00, 3599);
 /*Copy over data */
 \copy customer FROM './data/names_out.tsv' WITH NULL AS '-'
+\copy online_order FROM './data/online_order.tsv' WITH NULL AS '-'
+\copy game FROM './data/game_out.tsv' WITH NULL AS '-'
+\copy locale FROM './data/locale_out.tsv' WITH NULL AS '-'
+\copy employee FROM './data/employee_out.tsv' WITH NULL AS '-'
+\copy manager FROM './data/manager_out.tsv' WITH NULL AS '-'
+\copy cashier FROM './data/cashier_out.tsv' WITH NULL AS '-'
+\copy places FROM './data/places_out.tsv' WITH NULL AS '-'
+\copy purchases FROM './data/purchases_out.tsv' WITH NULL AS '-'
+\copy has_items FROM './data/has_items.tsv' WITH NULL AS '-'
+\copy works_at FROM './data/works_at.tsv' WITH NULL AS '-'
+\copy holds_items FROM './data/holds_items.tsv' WITH NULL AS '-'
+
+INSERT INTO sale (
+        start_date, end_date, discount, game_id)
+        VALUES ('2020-02-26', '2020-02-26', 20.20, 3333),
+        ('2020-03-06', '2020-03-07', 10.50, 3590),
+        ('2020-01-06', '2020-01-07', 5.00, 3595),
+        ('2020-01-25', '2020-01-18', 10.00, 3599);

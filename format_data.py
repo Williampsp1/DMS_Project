@@ -22,7 +22,7 @@ for line in address_file:
     if line[0].isdigit():
         address.append(line.strip('\n'))
     else:
-        cities.append(line.strip('\n').split(' ')[-2])
+        cities.append(line.strip('\n').split(',')[0])
         zipcodes.append(line.strip('\n').split(' ')[-1])
 
 # write names
@@ -83,14 +83,14 @@ f_name_e = []
 l_name_e = []
 e_names = open('./data/e_names.txt', 'r')
 e_names = open('./data/e_names.txt', 'r')
-e_out = open ('./data/employee_out.tsv', 'w')
+e_out = open('./data/employee_out.tsv', 'w')
 for line in e_names:
     temp = line.strip('\n').split(' ')
     f_name_e.append(temp[0])
-    l_name_e.append(temp[0])
+    l_name_e.append(temp[1])
 
 counter = 0
-for line in e_names:
+for i in f_name_e:
     e_out.write(str(e_id) + '\t' + str(round(random.uniform(30000,50000), 2)) + \
             '\t' + f_name_e[counter] + '\t' + l_name_e[counter] + '\n')
     e_id +=1
