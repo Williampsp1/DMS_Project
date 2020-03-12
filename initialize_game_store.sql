@@ -156,7 +156,9 @@ INSERT INTO works_at (
 
 INSERT INTO sale (
 	start_date, end_date, discount, game_id)
-	VALUES ('2020-02-26', '2020-02-26', 20.20, 3333);
-
+	VALUES ('2020-02-26', '2020-02-26', 20.20, 3333),
+	('2020-03-06', '2020-03-07', 10.50, 3590),
+	('2020-01-06', '2020-01-07', 5.00, 3595),
+	('2020-01-25', '2020-01-18', 10.00, 3599);
 /*Copy over data */
 \copy customer FROM './data/names_out.tsv' WITH NULL AS '-'
