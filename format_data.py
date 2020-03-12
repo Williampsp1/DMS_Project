@@ -117,4 +117,71 @@ for i in range(50,100):
     e_id +=1
 cash_out.close()
 
+# Relationships
+# Places -------
 
+online_id = 200
+counter = 0
+places_out = open('./data/places_out.tsv', 'w')
+dates = ['2020-02-26', '2020-01-18', '2020-03-6', '2020-03-7', '2020-03-8', '2020-04-25',
+        '2020-10-26', '2020-11-26', '2020-12-20']
+for i in range(1,101):
+    ran = random.randint(0,8)
+    places_out.write(str(online_id) + '\t' + str(i) + '\t' + dates[ran] + '\n')
+    online_id +=1
+places_out.close()
+
+
+# Purchases
+
+purchases_out = open('./data/purchases_out.tsv', 'w')
+dates = ['2020-02-26', '2020-01-18', '2020-03-6', '2020-03-7', '2020-03-8', '2020-04-25',
+        '2020-10-26', '2020-11-26', '2020-12-20']
+
+locale_ids = [240, 241, 242, 243, 244, 245]
+game_id = 3500
+for i in range(1,101):
+    ran = random.randint(0,8)
+    ran2 = random.randint(0,5)
+    purchases_out.write(str(i) + '\t' + str(game_id) + '\t' + dates[ran] + '\t' +\
+            str(locale_ids[ran2]) + '\n')
+    game_id +=1
+purchases_out.close()
+
+
+# has items ---
+online_id = 200
+game_id = 3500
+
+has_items = open('./data/has_items.tsv', 'w')
+for i in range(1, 101):
+    has_items.write(str(online_id) + '\t' + str(game_id) + '\n')
+    game_id += 1
+    online_id += 1
+has_items.close()
+
+
+# holds items ----
+game_id = 3500
+locale_ids = [240, 241, 242, 243, 244, 245]
+holds_items = open('./data/holds_items.tsv', 'w')
+
+for i in range(1,101):
+    ran = random.randint(0,5)
+    ran2 = random.randint(1,50)
+    holds_items.write(str(locale_ids[ran]) + '\t' + str(game_id) + '\t' + str(ran2) + '\n')
+    game_id +=1
+holds_items.close()
+
+# works at ---
+e_id = 6000
+locale_ids = [240, 241, 242, 243, 244, 245]
+works_at = open('./data/works_at.tsv', 'w')
+for i in range(1,101):
+    ran = random.randint(0,5)
+    works_at.write(str(e_id) + '\t' + str(locale_ids[ran]) + '\n')
+    e_id += 1
+works_at.close()
+
+# sale -----
+# entered manually
